@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package keepapi;
+
+// Authentication Service
+service AuthService {
+  rpc Register(RegisterRequest) returns (AuthResponse);
+  rpc Login(LoginRequest) returns (AuthResponse);
+  rpc Logout(LogoutRequest) returns (StatusResponse);
+}
+
+// Notes Service
+service NoteService {
+  rpc GetNotes(GetNotesRequest) returns (NotesResponse);
+  rpc GetNote(GetNoteRequest) returns (NoteResponse);
+  rpc CreateNote(CreateNoteRequest) returns (NoteResponse);
+  rpc UpdateNote(UpdateNoteRequest) returns (NoteResponse);
+  rpc DeleteNote(DeleteNoteRequest) returns (StatusResponse);
+}
+
+// Tags Service
+service TagService {
+  rpc GetTags(GetTagsRequest) returns (TagsResponse);
+  rpc GetTag(GetTagRequest) returns (TagResponse);
+  rpc CreateTag(CreateTagRequest) returns (TagResponse);
+  rpc UpdateTag(UpdateTagRequest) returns (TagResponse);
+  rpc DeleteTag(DeleteTagRequest) returns (StatusResponse);
+}
+
+// User Service
+service UserService {
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (StatusResponse);
+}
+
+// Authentication messages
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message AuthResponse {
+  bool success = 1;
+  string message = 2;
+  string token = 3;
+  User user = 4;
+}
+
+// Note messages
+message Note {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  repeated string tagIds = 4;
+  string userId = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+  bool archived = 8;
+  string color = 9;
+}
+
+message GetNotesRequest {
+  string userId = 1;
+  bool archived = 2;
+  string tagId = 3;
+}
+
+message GetNoteRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message CreateNoteRequest {
+  string title = 1;
+  string content = 2;
+  repeated string tagIds = 3;
+  string userId = 4;
+  string color = 5;
+}
+
+message UpdateNoteRequest {
+  string id = 1;
+  string title = 2;
+  string content = 3;
+  repeated string tagIds = 4;
+  string userId = 5;
+  bool archived = 6;
+  string color = 7;
+}
+
+message DeleteNoteRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message NotesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Note notes = 3;
+}
+
+message NoteResponse {
+  bool success = 1;
+  string message = 2;
+  Note note = 3;
+}
+
+// Tag messages
+message Tag {
+  string id = 1;
+  string name = 2;
+  string userId = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
+}
+
+message GetTagsRequest {
+  string userId = 1;
+}
+
+message GetTagRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message CreateTagRequest {
+  string name = 1;
+  string userId = 2;
+}
+
+message UpdateTagRequest {
+  string id = 1;
+  string name = 2;
+  string userId = 3;
+}
+
+message DeleteTagRequest {
+  string id = 1;
+  string userId = 2;
+}
+
+message TagsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Tag tags = 3;
+}
+
+message TagResponse {
+  bool success = 1;
+  string message = 2;
+  Tag tag = 3;
+}
+
+// User messages
+message User {
+  string id = 1;
+  string username = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message UpdateUserRequest {
+  string id = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message DeleteUserRequest {
+  string id = 1;
+}
+
+message UserResponse {
+  bool success = 1;
+  string message = 2;
+  User user = 3;
+}
+
+// Common messages
+message StatusResponse {
+  bool success = 1;
+  string message = 2;
+}
