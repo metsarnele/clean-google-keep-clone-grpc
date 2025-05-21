@@ -123,12 +123,3 @@ This implementation maintains its own data files, separate from the original RES
 - The first run will migrate data from the original REST API if available
 - Subsequent runs use the independent data storage
 
-## Environment Configuration
-
-The `.env` file contains configuration for both servers:
-
-```
-NODE_ENV=development
-SECRET_KEY=your_secret_key_for_testing
-PORT=3001            # REST server port
-GRPC_PORT=50051      # gRPC server port
