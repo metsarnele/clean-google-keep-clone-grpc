@@ -45,11 +45,21 @@ This script will:
    npm install
    ```
 
-2. **No need to compile Protocol Buffers**
+2. **Create environment file**
+   
+   Create a `.env` file in the root directory with the following content:
+   ```
+   SECRET_KEY=your_secret_key_for_jwt_tokens
+   GRPC_PORT=50051
+   ```
+   
+   Replace `your_secret_key_for_jwt_tokens` with a secure random string for JWT token generation.
+
+3. **No need to compile Protocol Buffers**
    
    This implementation uses `@grpc/proto-loader` which dynamically loads and parses proto files at runtime.
 
-3. **Start the gRPC server**
+4. **Start the gRPC server**
    ```sh
    node src/index.js
    ```

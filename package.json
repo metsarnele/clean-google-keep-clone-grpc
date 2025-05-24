@@ -11,6 +11,7 @@
     "@grpc/grpc-js": "^1.9.0",
     "@grpc/proto-loader": "^0.7.8",
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
     "uuid": "^11.0.5"
   }
