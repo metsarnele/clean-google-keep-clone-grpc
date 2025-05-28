@@ -73,17 +73,38 @@ This script will:
 
 ### Automated Tests
 
-To run the automated tests that verify the gRPC API functionality:
+To run the automated tests that verify the functional equivalence between the REST and gRPC APIs:
 
 ```sh
 ./tests/test.sh
 ```
 
 This script will:
-1. Start the gRPC server if it's not already running
-2. Run a series of tests that validate the gRPC API responses
-3. Verify that error handling is working correctly
-4. Shut down the server if it started it
+1. Start the gRPC server if it's not already running (port 50051)
+2. Start the REST server if it's not already running (port 3001)
+3. Run a series of comparative tests that validate both APIs produce equivalent responses
+4. Verify that all CRUD operations work identically in both implementations
+5. Shut down both servers if it started them
+
+#### Test Coverage
+
+The automated tests validate functional equivalence for the following operations:
+
+- **Authentication**
+  - User registration
+  - User login
+  - User logout
+
+- **Notes Management**
+  - Create note
+  - Get all notes
+  - Update note
+  - Delete note
+
+- **Tags Management**
+  - Create tag
+  - Get all tags
+  - Delete tag
 
 ### Manual Testing
 
