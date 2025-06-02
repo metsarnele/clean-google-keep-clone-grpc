@@ -53,7 +53,7 @@ This script will:
    GRPC_PORT=50051
    ```
    
-   Replace `your_secret_key_for_jwt_tokens` with a secure random string for JWT token generation.
+   **IMPORTANT**: You MUST replace `your_secret_key_for_jwt_tokens` with an actual string value (e.g., `my_secure_jwt_secret_123`). The application will not work if you leave the placeholder text as is.
 
 3. **No need to compile Protocol Buffers**
    
@@ -79,12 +79,17 @@ To run the automated tests that verify the functional equivalence between the RE
 ./tests/test.sh
 ```
 
-This script will:
-1. Start the gRPC server if it's not already running (port 50051)
-2. Start the REST server if it's not already running (port 3001)
-3. Run a series of comparative tests that validate both APIs produce equivalent responses
-4. Verify that all CRUD operations work identically in both implementations
-5. Shut down both servers if it started them
+**Important Prerequisites for Testing:**
+- Make sure you've created a valid `.env` file as described in the setup section above
+- The `.env` file MUST have a real value for SECRET_KEY, not the placeholder text
+
+The test script will:
+1. Check if the `.env` file exists and has a valid SECRET_KEY (it will create a temporary one for testing if needed)
+2. Start the gRPC server if it's not already running (port 50051)
+3. Start the REST server if it's not already running (port 3001)
+4. Run a series of comparative tests that validate both APIs produce equivalent responses
+5. Verify that all CRUD operations work identically in both implementations
+6. Shut down both servers if it started them
 
 #### Test Coverage
 

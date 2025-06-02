@@ -1,7 +1,7 @@
 # Node.js dependencies
 node_modules/
 
-# Environment variables
+# Environment variables (commented out to allow access during development)
 .env
 
 # Data files
@@ -35,4 +35,4 @@ coverage
 *.swp
 *.swo
 .DS_Store
-.env
+
